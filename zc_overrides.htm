@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="vinos_favicon.ico" type="image/x-icon" />
+<title>Zen Cart &mdash; Overrides Cheatsheet</title>
+<style type="text/css">
+body { background-color: #dcdcdc; color: #333333; }
+
+#main { font: 14px verdana,sans-serif; }
+
+#main li { margin-top: 5px; }
+li { list-style: none inside; }
+li.override>a, li.yourtemp>a { }
+li.override>ul, li.override>div, li.yourtemp>ul, li.yourtemp>div {  }
+
+#history li { list-style-type: square; margin-top: 2px; font-size: 11px;  }
+
+.desc { margin-left: 20px; color: #333333; padding: 3px; border: 1px solid black; }
+.desc li { list-style-type: square; }
+.override>.desc { background-color: #f4f4f4; }
+.yourtemp>.desc { background-color: #e3e3e3; }
+.override a, .override, sup { color: red; }
+.yourtemp a, .yourtemp { color: #009999; }
+sup { font-weight: bold; }
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="animatedcollapse.js">
+/***********************************************
+* Animated Collapsible DIV v2.4- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for this script and 100s more
+***********************************************/
+</script>
+<script type="text/javascript">
+animatedcollapse.addDiv('al', 'fade=1');
+animatedcollapse.addDiv('alo', 'fade=1');
+animatedcollapse.addDiv('co', 'fade=1');
+animatedcollapse.addDiv('eca', 'fade=1');
+animatedcollapse.addDiv('xc', 'fade=1');
+animatedcollapse.addDiv('ed', 'fade=1');
+animatedcollapse.addDiv('ef', 'fade=1');
+animatedcollapse.addDiv('ify', 'fade=1');
+animatedcollapse.addDiv('ii', 'fade=1');
+animatedcollapse.addDiv('iio', 'fade=1');
+animatedcollapse.addDiv('edy', 'fade=1');
+animatedcollapse.addDiv('hiy', 'fade=1');
+animatedcollapse.addDiv('oty', 'fade=1');
+animatedcollapse.addDiv('py', 'fade=1');
+animatedcollapse.addDiv('sy', 'fade=1');
+animatedcollapse.addDiv('ley', 'fade=1');
+animatedcollapse.addDiv('ly', 'fade=1');
+animatedcollapse.addDiv('l', 'fade=1');
+animatedcollapse.addDiv('mp', 'fade=1');
+animatedcollapse.addDiv('msy', 'fade=1');
+animatedcollapse.addDiv('my', 'fade=1');
+animatedcollapse.addDiv('ty', 'fade=1');
+animatedcollapse.addDiv('pty', 'fade=1');
+
+animatedcollapse.init();
+</script>
+</head>
+<body>
+<div id="main">
+<h1>Zen Cart &mdash; Overrides Cheatsheet <small>(created by lat9)</small> &mdash; v1.1.1</h1>
+<p>The list below shows the storefront directory structure for Zen Cart v1.3.9 through v1.5.5b.  Locations that are used for general overrides (i.e. affecting <em>all</em> templates) are identified by <span class="override">this color</span> and those that are used for template-specific overrides (i.e. affecting <em>only</em> that template) are identified by <span class="yourtemp">this color</span>.  Questions and/or comments can be directed to the support thread: <a href="http://www.zen-cart.com/showthread.php?176529" target="_blank">http://www.zen-cart.com/showthread.php?176529</a></p>
+<h2>Change History:</h2>
+<div id="history">
+  <ul>
+    <li>v1.0.0, 2011/03/15<ul>
+      <li>Initial release.</li>
+    </ul></li>
+    <li>v1.0.1, 2011/03/16<ul>
+      <li>/includes/index_filters/YOUR_TEMPLATE is available for template-specific overrides.</li>
+      <li>Added a cautionary notes to the /includes/modules/pages/* and /includes/templates/YOUR_TEMPLATE descriptions.</li>
+      <li>/includes/templates/YOUR_TEMPLATE/<em>product_type</em>/extra_main_template_vars is available for template-specific overrides of variables required for the specific <em>product_type</em>.</li>
+    </ul></li>
+    <li>v1.0.2, 2012/04/30<ul>
+      <li>Noted that the directory structure applies for v1.5.0 as well.</li>
+    </ul></li>
+    <li>v1.0.3, 2013-12-04<ul>
+      <li>Noted that the directory structure applies for v1.5.1 and v1.5.2 as well.</li>
+      <li>Added regarding file renaming &mdash; renaming files to an extension of <em>.bak</em> can raise PCI flags, suggest alternate rename (thanks to dbltoe).</li>
+    </ul></li>
+    <li>v1.1.0, 2014-09-06<ul>
+      <li>Zen Cart v1.5.3 introduced auto-loaded observers; see description in /includes/classes/observers.</li>
+    </ul></li>
+    <li>v1.1.1, 2016-11-10<ul>
+      <li>Note that the overrides apply to Zen Cart versions up to and including v1.5.5b.</li>
+      <li>Identify the locations where files are loaded <em>in file-system</em> rather than alphabetical order.</li>
+    </ul></li>
+  </ul>
+</div>
+<hr />
+<p>Clicking on a link reveals the override opportunities for the associated directory, clicking it again hides the content.  If a directory's name is noted<sup>*</sup>, then the files in that directory are loaded <em>in file-system order</em> &hellip; i.e. you cannot predict the order in which the directory's files load.</p>
+<hr />
+<p><a href="javascript:animatedcollapse.show(['al', 'alo', 'co', 'eca', 'xc', 'ed', 'ef', 'ify', 'ii', 'iio', 'edy', 'hiy', 'oty', 'py', 'sy', 'ley', 'ly', 'l', 'mp', 'msy', 'my', 'ty', 'pty'])">Show All Details</a> | <a href="javascript:animatedcollapse.hide(['al', 'alo', 'co', 'eca', 'xc', 'ed', 'ef', 'ify', 'ii', 'iio', 'edy', 'hiy', 'oty', 'py', 'sy', 'ley', 'ly', 'l', 'mp', 'msy', 'my', 'ty', 'pty'])">Hide All Details</a></p>
+<ul>
+  <li>/includes
+    <ul>
+      <li class="override"><a href="javascript:animatedcollapse.toggle('al')">/auto_loaders<sup>*</sup></a><div class="desc" id="al" style="display: none;">If you are implementing an observer or other site-wide functionality (such as loading a required class or init_include), create a file named <em><b>config.</b>yourcustomname<b>.php</b></em> in this directory to contain your changes. Refer to <a href="http://www.zen-cart.com/forum/showthread.php?t=39279" target="_blank">this</a> Zen Cart thread <small>(opens in a new window)</small> for additional information about overrides.</div>
+        <ul>
+          <li class="override"><a href="javascript:animatedcollapse.toggle('alo')">/overrides<sup>*</sup></a><div class="desc" id="alo" style="display: none;">To change the behavior of a <em>core</em> auto-loader, copy the file from /includes/auto_loaders to this directory and make your changes to affect all pages.</div></li>
+        </ul>
+      </li>
+      <li>/classes
+        <ul>
+          <li>/db</li>
+          <li class="override"><a href="javascript:animatedcollapse.toggle('co')">/observers</a><div class="desc" id="co" style="display: none;">If you are implementing an auto-loaded observer class, create a file named <em><b>class.</b>yourcustomname<b>.php</b></em> in this directory to contain your changes. Refer to <a href="http://www.zen-cart.com/forum/showthread.php?t=39279" target="_blank">this</a> Zen Cart thread <small>(opens in a new window)</small> for additional information about overrides.<p>Zen Cart v1.5.3 introduced the concept of an <em>auto-loaded observer</em>, a file named <em><b>auto.</b>yourcustomname<b>.php</b></em>.  Refer to the comments in /includes/init_includes/init_observers.php or <a href="http://vinosdefrutastropicales.com/blog/?p=242/" target="_blank">this</a> blog post <small>(opens in a new window)</small> for more information.</p></div></li>
+        </ul>
+      </li>
+      <li class="override"><a href="javascript:animatedcollapse.toggle('eca')">/extra_cart_actions<sup>*</sup></a><div class="desc" id="eca" style="display: none;">If you want to change the behavior of the shopping_cart actions, create a file named yourcustomname<b>.php</b> in this directory.  All <b>.php</b> files in this directory are run prior to running the <em>core</em> shopping_cart actions.</div></li>
+      <li class="override"><a href="javascript:animatedcollapse.toggle('xc')">/extra_configures<sup>*</sup></a><div class="desc" id="xc" style="display: none;">All <b>.php</b> files in this directory are unconditionally loaded prior to page, template, and language determination.</div></li>
+      <li class="override"><a href="javascript:animatedcollapse.toggle('ed')">/extra_datafiles</a><div class="desc" id="ed" style="display: none;">Files in this directory are normally used to define additional filenames (if you have defined additional pages for your site) or additional database table names you have defined.  All files with a <b>.php</b> extension are unconditionally loaded for each page.</div></li>
+      <li>/functions
+        <ul>
+          <li class="override"><a href="javascript:animatedcollapse.toggle('ef')">/extra_functions</a><div class="desc" id="ef" style="display: none;">If you have defined additional functions, create a file named yourfunctionsname<b>.php</b> in this directory to contain your changes.  All files with a <b>.php</b> extension are unconditionally loaded for each page.</div></li>
+        </ul>
+      </li>
+      <li>/index_filters
+<!-- BOF Added v1.0.1 -->
+        <ul>
+          <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('ify')">/YOUR_TEMPLATE</a><div class="desc" id="ify" style="display: none;">To make template-specific changes to any <em>core</em> file in the index_filters directory, copy the file from /includes/index_filters to this directory and make your changes.</div></li>
+        </ul>
+<!-- EOF Added v1.0.1 -->
+      </li>
+      <li class="override"><a href="javascript:animatedcollapse.toggle('ii')">/init_includes</a><div class="desc" id="ii" style="display: none;">If your modification requires a new initialization file (loaded by an auto-loader), create a file named <b>init_</b>yourcustomname<b>.php</b> in this directory.  That filename format is <em>conventional</em>; just make sure that the filename is the same as that specified in /includes/auto_loaders/config.yourcustomname.php.</div>
+        <ul>
+          <li class="override"><a href="javascript:animatedcollapse.toggle('iio')">/overrides</a><div class="desc" id="iio" style="display: none;">To change the behavior of a <em>core</em> initialization file, copy the file from /includes/init_includes to this directory and make your changes to affect all pages.</div></li>
+        </ul>
+      </li>
+      <li>/languages
+        <ul>
+          <li>/classic</li>
+          <li>/english
+            <ul>
+              <li>/classic</li>
+              <li>/extra_definitions
+                <ul>
+                  <li>/classic</li>
+                  <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('edy')">/YOUR_TEMPLATE</a><div class="desc" id="edy" style="display: none;">To make template-specific changes to any <em>core</em> file in the extra_definitions directory, copy the file from /includes/languages/english/extra_definitions to this directory and make your changes.</div></li>
+                </ul>
+              </li>
+              <li>/html_includes
+                <ul>
+                  <li>/classic</li>
+                  <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('hiy')">/YOUR_TEMPLATE</a><div class="desc" id="hiy" style="display: none;">To make template-specific changes to any <em>core</em> file in the html_includes directory, copy the file from /includes/languages/english/html_includes to this directory and make your changes.  Alternatively, you can use your admin&rsquo;s Define Pages Editor (when you have selected YOUR_TEMPLATE as the active template) to make the changes.</div></li>
+                </ul>                
+              </li>
+              <li>/images</li>
+              <li>/modules
+                <ul>
+                  <li>/order_total
+                    <ul>
+                      <li>/classic</li>
+                      <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('oty')">/YOUR_TEMPLATE</a><div class="desc" id="oty" style="display: none;">To make template-specific changes to any <em>core</em> file in the order_total directory, copy the file from /includes/languages/english/modules/order_total to this directory and make your changes.</div></li>
+                    </ul>
+                  </li>
+                  <li>/payment
+                    <ul>
+                      <li>/classic</li>
+                      <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('py')">/YOUR_TEMPLATE</a><div class="desc" id="py" style="display: none;">To make template-specific changes to any <em>core</em> file in the payment directory, copy the file from /includes/languages/english/modules/payment to this directory and make your changes.</div></li>
+                    </ul>
+                  </li>
+                  <li>/shipping
+                    <ul>
+                      <li>/classic</li>
+                      <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('sy')">/YOUR_TEMPLATE</a><div class="desc" id="sy" style="display: none;">To make template-specific changes to any <em>core</em> file in the shipping directory, copy the file from /includes/languages/english/modules/shipping to this directory and make your changes.</div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('ley')">/YOUR_TEMPLATE</a><div class="desc" id="ley" style="display: none;">To make template-specific changes to any <em>core</em> file in the english directory, copy the file from /includes/languages/english to this directory and make your changes.</div></li>
+            </ul>
+          </li>
+          <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('ly')">/YOUR_TEMPLATE</a><div class="desc" id="ly" style="display: none;">To make template-specific changes to any <em>core</em> file in the base languages directory (e.g. english.php), copy the file from /includes/languages to this directory and make your changes.</div></li>
+        </ul>
+      </li>
+      <li class="override"><a href="javascript:animatedcollapse.toggle('l')">/local</a><div class="desc" id="l" style="display: none;">If you have a copy of your Zen Cart files on your local machine, create a copy of /includes/configure.php in this directory and make the modifications required to access your local file structure and database.  This will allow you to perform local testing using a copy of your hosted implementation.  <b>Note:</b> Be sure <b>not</b> to copy this directory to your hosted version!</div></li>
+      <li>/modules
+        <ul>
+          <li>/classic</li>
+          <li>/debug_blocks</li>
+          <li>/order_total</li>
+          <li>/pages
+            <ul>
+              <li class="override"><a href="javascript:animatedcollapse.toggle('mp')">*</a><div class="desc" id="mp" style="display: none;">For any page, you can add function by creating the file <b>header_php</b>yourcustomname<b>.php</b>.  These files are loaded &mdash; after the <em>core</em> header_php.php file &mdash; in alphabetical order and are run unconditionally (i.e. for every template selection).<br /><br /><b>Notes:</b><ul><li>If the <em>core</em> header_php.php file processing results in a redirect to a different page, your custom code will never be run.</li><li>Be careful when renaming an existing header_php.php file for archive purposes; if you rename the file to header_php-backup.php (or similar), that file will still be run (and cause you all kinds of grief). Your best approach is to change the file extension for the backup to <b>something other than <i>.php</i></b> &mdash; like, possibly, your initials or .php~.  Don't use <code>.bak</code>, since that might raise PCI-compliance flags.</li></ul></div>
+              </li>
+            </ul>
+          </li>
+          <li>/payment</li>
+          <li>/shipping</li>
+          <li>/sideboxes
+            <ul>
+              <li>/classic</li>
+              <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('msy')">/YOUR_TEMPLATE</a><div class="desc" id="msy" style="display: none;">To make template-specific changes to any <em>core</em> sidebox, copy the file from /includes/modules/sideboxes to this directory and make your changes.</div></li>
+            </ul>
+          </li>
+          <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('my')">/YOUR_TEMPLATE</a><div class="desc" id="my" style="display: none;">To make template-specific changes to any <em>core</em> module, copy the file from /includes/modules to this directory and make your changes.</div></li>
+        </ul>
+      </li>
+      <li>/templates
+        <ul>
+          <li>/classic</li>
+          <li>/template_default</li>
+          <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('ty')">/YOUR_TEMPLATE</a><div class="desc" id="ty" style="display: none;">Here is where the majority of your template-specific files reside; just mimic the directory structure of /includes/templates/template_default for your purposes, including <em>only</em> those directories and files that you are modifying.  Start by copying a file from template_default into the same sub-directory under YOUR_TEMPLATE and then make your changes.  You should not copy the entire contents of the <code>template_default</code> directory; only copy those files that you are changing for <em>your</em> template &mdash; note that you <b>must</b> have a /css sub-directory as all CSS files are template-specific!</div>
+            <ul>
+              <li class="yourtemp"><a href="javascript:animatedcollapse.toggle('pty')">/<em>product_type</em>/extra_main_template_vars</a><div class="desc" id="pty" style="display: none;">You can customize the variables for a specific Zen Cart <em>product_type</em> (e.g. document_general_info, document_product_info, product_free_shipping_info, product_info or product_music_info) by creating one or more <b>.php</b> files in the associated directory.  All <b>.php</b> files are run (in alphabetical sort-order) by the <em>product_type</em> page&rsquo;s main_template_vars.php file.<p>For example, all <b>.php</b> files in /includes/templates/YOUR_TEMPLATE/product_info/extra_main_template_vars are run as part of the template-specific processing for the <em>product_info</em> page.</p></div></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+</body>
+</html>
